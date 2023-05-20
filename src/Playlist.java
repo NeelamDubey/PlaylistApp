@@ -41,7 +41,7 @@ public class Playlist {
         return "Song added successfully";
     }
 
-    public String playNext(Album album, String songName)
+    public String playNext()
     {
         if(wasNext)
         {
@@ -56,12 +56,12 @@ public class Playlist {
         {
             wasNext=true;
             Song song=itr.next();
-            return "Next song is"+songName;
+            return "Next song is"+song.getName();
         }
         return "You have reached end of playlist";
     }
 
-    public String playPrevious(Album album, String songName)
+    public String playPrevious()
     {
         if(!wasNext)
         {
@@ -76,7 +76,7 @@ public class Playlist {
         {
             wasNext=true;
             Song song=itr.previous();
-            return "Previous song is"+songName;
+            return "Previous song is"+song.getName();
         }
         return "You have reached top of playlist";
     }
@@ -91,6 +91,12 @@ public class Playlist {
         wasNext=true;
         return "Current song is"+itr.next();
     }
-
-
+    public String toString() {
+        return "PlayList{" +
+                "title='" + title + '\'' +
+                ", songs=" + songs +
+                ", itr=" + itr +
+                ", wasNext=" + wasNext +
+                '}';
+    }
 }

@@ -6,18 +6,19 @@ public class Album {
     private String title;
     private String artist;
     private List<Song> songs;
-    public Album(String title,String artist)
-    {
-        this.artist=artist;
-        this.title=title;
-        this.songs=new ArrayList<>();
+
+    public Album(String title, String artist) {
+        this.title = title;
+        this.artist = artist;
+        songs=new ArrayList<>();
     }
-    public Album(String title,String artist,List<Song> songs)
-    {
-        this.artist=artist;
-        this.title=title;
-        this.songs=songs;
+
+    public Album(String title, String artist, List<Song> songs) {
+        this.title = title;
+        this.artist = artist;
+        this.songs = songs;
     }
+
     public String getTitle() {
         return title;
     }
@@ -25,6 +26,7 @@ public class Album {
     public void setTitle(String title) {
         this.title = title;
     }
+
     public String getArtist() {
         return artist;
     }
@@ -36,43 +38,32 @@ public class Album {
     public List<Song> getSongs() {
         return songs;
     }
-    private boolean findSong(Song songToFind)
-    {
-        for(Song song:songs)
-        {
-            if(song.getTitle().equals(songToFind) && song.getArtist().equals(songToFind.getArtist()))
-            {
+
+    private Boolean findSong(Song songToFind){
+        for(Song song:this.songs){
+            if(song.getName().equals(songToFind.getName()) && song.getArtist().equals(songToFind.getArtist())){
                 return true;
             }
         }
         return false;
-    }
-    public boolean findSong(String songName)
-    {
-        for(Song song:songs)
-        {
-            if(song.getTitle().equals(songName))
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-    public String addSong(Song song)
-    {
-        if(this.findSong(song))
-        {
-            return "Song already added";
-        }
-        songs.add(song);
-        return "Song added";
     }
 
-    public Optional<Song> searchSong(String songName) {
-        for(Song song:songs)
-        {
-            if(song.getTitle().equals(songName))
-            {
+    public  Boolean findSong(String songToFind){
+        for(Song song:this.songs){
+            if(song.getName().equals(songToFind))return true;
+        }
+        return false;
+    }
+
+    public String addSong(Song song){
+        if(findSong(song))return "Song is already Exits";
+        this.songs.add(song);
+        return "Song is added in the Album";
+    }
+
+    public Optional<Song> searchSong(String songName){
+        for(Song song:songs){
+            if(song.getName().equals(songName)){
                 return Optional.of(song);
             }
         }
